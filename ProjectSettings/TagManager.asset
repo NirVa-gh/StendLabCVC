@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - PC
+  - Cube
   layers:
   - Default
   - TransparentFX
