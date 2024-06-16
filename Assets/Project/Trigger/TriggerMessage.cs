@@ -18,13 +18,11 @@ public class TriggerMessage : MonoBehaviour
 
     void OnMouseEnter()
     {
-        print("OnMouseEnter");
         material.SetColor("_EmissionColor", hoverColor);
     }
 
     void OnMouseExit()
     {
-        print("OnMouseExit");
         material.SetColor("_EmissionColor", originalColor);
     }
 }
