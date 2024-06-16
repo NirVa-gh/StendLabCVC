@@ -9,7 +9,7 @@ namespace UIWidgets
 	[RequireComponent(typeof(CanvasGroup))]
 	public class UIWidget : MonoBehaviour
 	{
-		[Tooltip("Name of the widget. You can find a reference to a widget with WidgetUtility.Find<T>(name).")]
+		[Tooltip("Name of the widget.")]
 		[SerializeField]
 		protected new string name;
 

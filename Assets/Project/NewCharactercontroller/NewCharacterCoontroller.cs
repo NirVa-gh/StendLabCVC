@@ -56,10 +56,24 @@ namespace character
         {
             if (canMove)
             {
+                virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = sensitivity * 100;
+                virtualCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = sensitivity * 100;
+                Vector3 camF = mainCamera.forward;
+                Vector3 camR = mainCamera.right;
+                camF.y = 0;
+                camR.y = 0;
+                Vector3 movingVector;
+                movingVector = Vector3.ClampMagnitude(camF.normalized * Input.GetAxis("Vertical") * currentSpeed +
+                camR.normalized * Input.GetAxis("Horizontal") * currentSpeed, currentSpeed);
+                _rigidbody.velocity = new Vector3(movingVector.x, _rigidbody.velocity.y, movingVector.z);
+                _rigidbody.angularVelocity = Vector3.zero;
+            }
+            if (canMove)
+            {
                 transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, mainCamera.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
                 if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.LeftShift))
                 {
-                    if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D))
+                    if (Input.GetKey(KeyCode.S))
                     {
                         currentSpeed = Mathf.Lerp(currentSpeed, walkingSpeed, Time.deltaTime * 3);
                     }
@@ -133,7 +147,7 @@ namespace character
                 isJumping = false;
             }
         }
-        void FixedUpdate()
+        /*void FixedUpdate()
         {
             if (canMove)
             {
@@ -149,10 +163,7 @@ namespace character
                 _rigidbody.velocity = new Vector3(movingVector.x, _rigidbody.velocity.y, movingVector.z);
                 _rigidbody.angularVelocity = Vector3.zero;
             }
-        }
-
-
-
+        }*/
     }
 
 
